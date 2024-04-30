@@ -3,7 +3,7 @@
 export default class AppRoutes {
   static BASE = "/";
   static LOGIN = "login";
-  static DASHBOARD = "dashboard";
+  static DASHBOARD = "/";
   static PENDING_POST = "pending-post";
   static APPROVE_DPOST = "approved-post";
   static REJECTED_POST = "rejected-post";
