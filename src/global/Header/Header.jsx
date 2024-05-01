@@ -8,7 +8,8 @@ import {
 } from "@ant-design/icons";
 import logo from "../../../assets/icons/logo.png";
 import style from "./Header.module.css";
-import AppColors from "../../config/theme/AppColors";
+import AppColors from "../../config/AppColors";
+import AppString from "../../config/AppString";
 
 function Header() {
   const handleLogout = () => {
@@ -39,7 +40,7 @@ function Header() {
             color: AppColors.primary,
           }}
         >
-          88Creadit
+          {AppString.AppName}
         </p>
       </Space>
       <Space>
@@ -52,11 +53,12 @@ function Header() {
           icon={<UserOutlined />}
           style={{ backgroundColor: AppColors.primary }}
         />
-        <Row>Admin</Row>
+        <Row>{AppString.UserName}</Row>
+        <Divider type="vertical" style={{ width: 3, height: 30 }} />
         <Button
           type="link"
           onClick={handleLogout}
-          style={{ color: AppColors.primary }}
+          style={{ color: AppColors.primary, paddingLeft: 0 }}
         >
           Đăng Xuất <LogoutOutlined />
         </Button>
