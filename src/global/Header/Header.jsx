@@ -1,8 +1,15 @@
 import React from "react";
-import { Space, Button, Typography } from "antd";
+import { Row, Space, Button, Badge, Avatar, Divider } from "antd";
+import {
+  LogoutOutlined,
+  UserOutlined,
+  BellOutlined,
+  CaretDownOutlined,
+} from "@ant-design/icons";
+import logo from "../../../assets/icons/logo.png";
 import style from "./Header.module.css";
-import { LogoutOutlined } from "@ant-design/icons";
-import logo from "../../../assets/logo.png";
+import AppColors from "../../config/theme/AppColors";
+
 function Header() {
   const handleLogout = () => {
     // Thực hiện các bước đăng xuất ở đây
@@ -13,22 +20,47 @@ function Header() {
 
   return (
     <div className={style.AppHeader}>
-      <Typography.Text>Admin</Typography.Text>
-      <img
-        src={logo}
-        alt=""
-        style={{
-          height: "40px",
-          paddingTop: "8px",
-          paddingBottom: "8px",
-          paddingLeft: "32px",
-        }}
-      />
       <Space>
-        {/* Log out icon */}
-        <Button type="link" onClick={handleLogout} style={{ color: "#026D4D" }}>
+        <img
+          src={logo}
+          alt=""
+          style={{
+            height: "40px",
+            paddingTop: "8px",
+            paddingBottom: "8px",
+            paddingLeft: "32px",
+          }}
+        />
+        <p
+          style={{
+            fontSize: "24px",
+            margin: "5px",
+            fontFamily: "Bebas Neue",
+            color: AppColors.primary,
+          }}
+        >
+          88Creadit
+        </p>
+      </Space>
+      <Space>
+        <Badge count={3} dot>
+          <BellOutlined style={{ fontSize: 24 }} />
+        </Badge>
+        <Divider type="vertical" style={{ width: 3, height: 30 }} />
+        <Avatar
+          size={36}
+          icon={<UserOutlined />}
+          style={{ backgroundColor: AppColors.primary }}
+        />
+        <Row>Admin</Row>
+        <Button
+          type="link"
+          onClick={handleLogout}
+          style={{ color: AppColors.primary }}
+        >
           Đăng Xuất <LogoutOutlined />
         </Button>
+        {/* <CaretDownOutlined /> */}
       </Space>
     </div>
   );

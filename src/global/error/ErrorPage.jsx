@@ -1,7 +1,7 @@
 import React from "react";
 import { useRouteError } from "react-router-dom";
 import { Link } from "react-router-dom";
-import NotFoundSVG from "../../../assets/404-not-found.svg";
+import NotFoundSVG from "../../../assets/icons/404-not-found.svg";
 
 export default function ErrorPage() {
   const error = useRouteError();
