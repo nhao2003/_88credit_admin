@@ -1,17 +1,7 @@
 import * as React from "react";
 import * as ReactDOM from "react-dom/client";
-import { createBrowserRouter, RouterProvider } from "react-router-dom";
-import Root from "./modules/root/Root";
-import ErrorPage from "./global/error/error-page";
+import { RouterProvider } from "react-router-dom";
 import { AppPages } from "./routes/AppPages";
-
-const router = createBrowserRouter([
-  {
-    path: "/",
-    element: <Root />,
-    errorElement: <ErrorPage />,
-  },
-]);
 
 const App = () => {
   return (

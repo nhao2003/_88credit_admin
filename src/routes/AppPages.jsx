@@ -1,14 +1,12 @@
 // class AppPages include createBrowserRouter
 import React from "react";
 import { createBrowserRouter } from "react-router-dom";
-import ErrorPage from "../global/error/error-page";
+import ErrorPage from "../global/error/ErrorPage";
 import AppRoutes from "./AppRoutes";
 import Root from "../modules/root/Root";
 import LoginPage from "../modules/login/LoginPage";
 import DashBoard from "../modules/dashboard/screens/DashBoard";
-import DashBoard, {
-  loader as dashboardLoader,
-} from "../modules/dashboard/DashBloardLoader";
+import { loader as dashboardLoader } from "../modules/dashboard/DashBloardLoader";
 
 export const AppPages = createBrowserRouter([
   {
