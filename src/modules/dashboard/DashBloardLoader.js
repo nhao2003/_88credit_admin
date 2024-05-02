@@ -46,6 +46,8 @@ export async function loader() {
         count: 50,
       },
     ],
+    countBlog: 10,
+    countSubscriptionPackage: 10,
   };
   return { dashboard };
 }
