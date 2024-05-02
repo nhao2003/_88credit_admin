@@ -1,12 +1,14 @@
 // class AppPages include createBrowserRouter
-import React, { Children } from "react";
+import React from "react";
 import { createBrowserRouter } from "react-router-dom";
-import create from "@ant-design/icons/lib/components/IconFont";
 import ErrorPage from "../global/error/error-page";
 import AppRoutes from "./AppRoutes";
 import Root from "../modules/root/Root";
 import LoginPage from "../modules/login/LoginPage";
 import DashBoard from "../modules/dashboard/screens/DashBoard";
+import DashBoard, {
+  loader as dashboardLoader,
+} from "../modules/dashboard/DashBloardLoader";
 
 export const AppPages = createBrowserRouter([
   {
@@ -22,6 +24,7 @@ export const AppPages = createBrowserRouter([
         index: true,
         path: AppRoutes.DASHBOARD,
         element: <DashBoard />,
+        loader: dashboardLoader,
       },
     ],
   },
