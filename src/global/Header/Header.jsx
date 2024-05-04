@@ -10,13 +10,16 @@ import logo from "../../../assets/icons/logo.png";
 import style from "./Header.module.css";
 import AppColors from "../../config/AppColors";
 import AppString from "../../config/AppString";
+import { toast } from "react-toastify";
+import AppRoutes from "../../routes/AppRoutes";
 
 function Header() {
   const handleLogout = () => {
     // Thực hiện các bước đăng xuất ở đây
     // Ví dụ: Xóa token từ localStorage và chuyển hướng đến trang đăng nhập
-    sessionStorage.removeItem("token");
-    window.location.href = "/"; // Điều hướng đến trang đăng nhập
+    localStorage.removeItem(AppString.Token);
+    toast.success("Đăng xuất thành công");
+    window.location.href = AppRoutes.BASE; // Điều hướng đến trang đăng nhập
   };
 
   return (
@@ -60,7 +63,8 @@ function Header() {
           onClick={handleLogout}
           style={{ color: AppColors.primary, paddingLeft: 0 }}
         >
-          Đăng Xuất <LogoutOutlined />
+          Đăng Xuất
+          <LogoutOutlined />
         </Button>
         {/* <CaretDownOutlined /> */}
       </Space>

@@ -4,16 +4,19 @@ import { UserOutlined, LockOutlined } from "@ant-design/icons";
 import { toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css"; // Import the styles
 import { ToastContainer } from "react-toastify";
+import AppString from "../../config/AppString";
+import AppRoutes from "../../routes/AppRoutes";
+import { Password, Token, UserName } from "../../config/Constants";
 const { Title } = Typography;
 
 const LoginPage = () => {
   const onFinish = async (values) => {
     const { username, password } = values;
-    if (username === "admin" && password === "admin") {
-      localStorage.setItem("token", "1234567890");
+    if (username === UserName && password === Password) {
+      localStorage.setItem(AppString.Token, Token);
       toast.success("Đăng nhập thành công");
       await new Promise((resolve) => setTimeout(resolve, 1000));
-      window.location.href = "/";
+      window.location.href = AppRoutes.BASE;
     } else {
       console.log("Login fail");
       toast.error("Đăng nhập thất bại");
