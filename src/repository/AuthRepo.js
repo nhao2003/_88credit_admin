@@ -16,4 +16,13 @@ export class AuthRepo {
       toast.error("Đăng nhập thất bại");
     }
   };
+
+  static onLogout = async () => {
+    // Thực hiện các bước đăng xuất ở đây
+    // Ví dụ: Xóa token từ localStorage và chuyển hướng đến trang đăng nhập
+    toast.success("Đăng xuất thành công");
+    localStorage.removeItem(AppString.Token);
+    await new Promise((resolve) => setTimeout(resolve, 1000));
+    window.location.href = AppRoutes.BASE; // Điều hướng đến trang đăng nhập
+  };
 }

@@ -1,29 +1,17 @@
 import React from "react";
 import { Row, Space, Button, Badge, Avatar, Divider } from "antd";
-import {
-  LogoutOutlined,
-  UserOutlined,
-  BellOutlined,
-  CaretDownOutlined,
-} from "@ant-design/icons";
+import { LogoutOutlined, UserOutlined, BellOutlined } from "@ant-design/icons";
 import logo from "../../../assets/icons/logo.png";
 import style from "./Header.module.css";
 import AppColors from "../../config/AppColors";
 import AppString from "../../config/AppString";
-import { toast } from "react-toastify";
-import AppRoutes from "../../routes/AppRoutes";
+import { AuthRepo } from "../../repository/AuthRepo";
+import { ToastContainer } from "react-toastify";
 
 function Header() {
-  const handleLogout = () => {
-    // Thực hiện các bước đăng xuất ở đây
-    // Ví dụ: Xóa token từ localStorage và chuyển hướng đến trang đăng nhập
-    localStorage.removeItem(AppString.Token);
-    toast.success("Đăng xuất thành công");
-    window.location.href = AppRoutes.BASE; // Điều hướng đến trang đăng nhập
-  };
-
   return (
     <div className={style.AppHeader}>
+      <ToastContainer className={"toast-container"} id="toast-container" />{" "}
       <Space>
         <img
           src={logo}
@@ -60,7 +48,7 @@ function Header() {
         <Divider type="vertical" style={{ width: 3, height: 30 }} />
         <Button
           type="link"
-          onClick={handleLogout}
+          onClick={AuthRepo.onLogout}
           style={{ color: AppColors.primary, paddingLeft: 0 }}
         >
           Đăng Xuất
