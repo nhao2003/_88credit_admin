@@ -7,6 +7,10 @@ import Root from "../modules/root/Root";
 import LoginPage from "../modules/login/LoginPage";
 import DashBoard from "../modules/dashboard/screens/DashBoard";
 import { loader as dashboardLoader } from "../modules/dashboard/DashBloardLoader";
+import ApprovedPost, {
+  loader as approvedPostLoader,
+} from "../modules/post/screens/ApprovedPost";
+import { action as postAction } from "../modules/post/action";
 
 export const AppPages = createBrowserRouter([
   {
@@ -23,6 +27,12 @@ export const AppPages = createBrowserRouter([
         path: AppRoutes.DASHBOARD,
         element: <DashBoard />,
         loader: dashboardLoader,
+      },
+      {
+        path: "approved_post",
+        element: <ApprovedPost />,
+        loader: approvedPostLoader,
+        action: postAction,
       },
     ],
   },
