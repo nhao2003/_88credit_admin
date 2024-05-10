@@ -7,9 +7,8 @@ import Root from "../modules/root/Root";
 import LoginPage from "../modules/login/LoginPage";
 import DashBoard from "../modules/dashboard/screens/DashBoard";
 import { loader as dashboardLoader } from "../modules/dashboard/DashBloardLoader";
-import ApprovedPost, {
-  loader as approvedPostLoader,
-} from "../modules/post/screens/ApprovedPost";
+import {loader as approvedPostLoader} from "../modules/post/ApprovedPostLoader"
+import ApprovedPost from "../modules/post/screens/ApprovedPost";
 import { action as postAction } from "../modules/post/action";
 
 export const AppPages = createBrowserRouter([
