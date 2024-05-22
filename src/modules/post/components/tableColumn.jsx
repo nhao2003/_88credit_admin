@@ -16,12 +16,12 @@ const columns = [
       title: "Người đăng",
       dataIndex: "user",
       key: "user",
-      render: (user) => {
-        if(user.first_name && user.last_name){
-          return user.first_name + " "+ user.last_name
-        }
-        return user.email
-      }
+      // render: (user) => {
+      //   if(user.first_name && user.last_name){
+      //     return user.first_name + " "+ user.last_name
+      //   }
+      //   return user.email
+      // }
     },
     {
       title: "Mô tả",
@@ -101,12 +101,12 @@ const columns = [
             title: "Người đăng",
             dataIndex: "user",
             key: "user",
-            render: (user) => {
-            if(user.first_name && user.last_name){
-                return user.first_name + " "+ user.last_name
-            }
-            return user.email
-            }
+            // render: (user) => {
+            // if(user.first_name && user.last_name){
+            //     return user.first_name + " "+ user.last_name
+            // }
+            // return user.email
+            // }
         },
         descriptionColumn: {
             title: "Mô tả",

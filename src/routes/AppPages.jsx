@@ -10,6 +10,7 @@ import { loader as dashboardLoader } from "../modules/dashboard/DashBloardLoader
 import {loader as approvedPostLoader} from "../modules/post/ApprovedPostLoader"
 import ApprovedPost from "../modules/post/screens/ApprovedPost";
 import RejectedPost from "../modules/post/screens/RejectedPost";
+import PendingPost from "../modules/post/screens/PendingPost";
 import { action as postAction } from "../modules/post/action";
 
 export const AppPages = createBrowserRouter([
@@ -37,6 +38,12 @@ export const AppPages = createBrowserRouter([
       {
         path: "rejected_post",
         element: <RejectedPost />,
+        loader: approvedPostLoader,
+        action: postAction,
+      },
+      {
+        path: "pending_post",
+        element: <PendingPost />,
         loader: approvedPostLoader,
         action: postAction,
       },
