@@ -18,31 +18,34 @@ import ApiService from "../../../services/ApiService";
 import Breadcrumbs from "../../../global/BreadCrumb/BreadCrumb";
 import { borrowingColumns, lendingColumns } from "../components/tableColumn";
 import { approvePost, rejectPost } from "../action";
+import { ConsoleSqlOutlined } from "@ant-design/icons";
 //function loader to call API
-export async function loader() {
-  const response = await ApiService.get(
-    "posts?post_status[eq]='approved'&page=all"
-  );
-  const posts = response.result;
-  console.log("length", posts.length);
-  if (!posts) {
-    throw new Response("", {
-      status: 404,
-      statusText: "Not Found",
-    });
-  }
-  const postLending = posts.filter((post) => post.type === "lending");
-  const postBorrowing = posts.filter((post) => post.type === "borrowing");
-  console.log("lease", postLending);
-  console.log("no lease", postBorrowing);
-  return { postLending, postBorrowing };
-}
+// export async function loader() {
+//   const response = await ApiService.get(
+//     "posts?post_status[eq]='approved'&page=all"
+//   );
+//   const posts = response.result;
+//   console.log("length", posts.length);
+//   if (!posts) {
+//     throw new Response("", {
+//       status: 404,
+//       statusText: "Not Found",
+//     });
+//   }
+//   const postLending = posts.filter((post) => post.type === "lending");
+//   const postBorrowing = posts.filter((post) => post.type === "borrowing");
+//   console.log("lease", postLending);
+//   console.log("no lease", postBorrowing);
+//   return { postLending, postBorrowing };
+// }
 
 function ApprovedPost(props) {
   const navigate = useNavigate();
   const { Title } = Typography;
   const { postLending: pLending, postBorrowing } = useLoaderData();
   const [postsLending, setPostsLending] = useState(pLending);
+  //console.log("Hello");
+  console.log(postsLending);
   const [postsBorrowing, setPostsBorrowing] = useState(postBorrowing);
   const fetcher = useFetcher();
   const actionColumn = {
