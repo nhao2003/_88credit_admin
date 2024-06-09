@@ -12,6 +12,13 @@ import ApprovedPost from "../modules/post/screens/ApprovedPost";
 import RejectedPost from "../modules/post/screens/RejectedPost";
 import PendingPost from "../modules/post/screens/PendingPost";
 import { action as postAction } from "../modules/post/action";
+import Blog from "../modules/blog/screens/Blog";
+import BlogDetail from "../modules/blog/screens/BlogDetail";
+import AddNewPage from "../modules/blog/screens/AddNewPage";
+import EditBlog from "../modules/blog/screens/BlogEdit";
+import { loader as blogLoader } from "../modules/blog/screens/Blog";
+import { loader as blogDetailLoader } from "../modules/blog/screens/BlogDetail";
+import { loader as EditBlogLoader } from "../modules/blog/screens/BlogEdit";
 
 export const AppPages = createBrowserRouter([
   {
@@ -47,6 +54,29 @@ export const AppPages = createBrowserRouter([
         loader: approvedPostLoader,
         action: postAction,
       },
+      {
+        path: "blogs",
+        element: <Blog />,
+        loader: blogLoader,
+        // action: blogAction,
+      },
+      {
+        path: "blogs/:id",
+        element: <BlogDetail />,
+        loader: blogDetailLoader,
+        // action: blogAction,
+      },
+      // {
+      //   path: "blogs/add",
+      //   element: <AddNewPage />,
+      //   action: blogAction,
+      // },
+      // {
+      //   path: "blogs/edit/:id",
+      //   element: <EditBlog />,
+      //   loader: EditBlogLoader,
+      //   action: blogAction,
+      // },
     ],
   },
 ]);
