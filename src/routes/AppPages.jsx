@@ -19,6 +19,12 @@ import EditBlog from "../modules/blog/screens/BlogEdit";
 import { loader as blogLoader } from "../modules/blog/screens/Blog";
 import { loader as blogDetailLoader } from "../modules/blog/screens/BlogDetail";
 import { loader as EditBlogLoader } from "../modules/blog/screens/BlogEdit";
+import { action as blogAction } from "../modules/blog/action";
+import PendingReporting from "../modules/reporting/screens/PostReporting";
+import UserReporting from "../modules/reporting/screens/UserReporting";
+import { loader as pendingReportingLoader } from "../modules/reporting/screens/PostReporting";
+import { loader as userReportingLoader } from "../modules/reporting/screens/UserReporting";
+import { action as reportingAction } from "../modules/reporting/action";
 
 export const AppPages = createBrowserRouter([
   {
@@ -66,17 +72,29 @@ export const AppPages = createBrowserRouter([
         loader: blogDetailLoader,
         // action: blogAction,
       },
-      // {
-      //   path: "blogs/add",
-      //   element: <AddNewPage />,
-      //   action: blogAction,
-      // },
-      // {
-      //   path: "blogs/edit/:id",
-      //   element: <EditBlog />,
-      //   loader: EditBlogLoader,
-      //   action: blogAction,
-      // },
+      {
+        path: "blogs/add",
+        element: <AddNewPage />,
+        // action: blogAction,
+      },
+      {
+        path: "blogs/edit/:id",
+        element: <EditBlog />,
+        loader: EditBlogLoader,
+        // action: blogAction,
+      },
+      {
+        path: "post_reporting",
+        element: <PendingReporting />,
+        loader: pendingReportingLoader,
+        action: reportingAction,
+      },
+      {
+        path: "user_reporting",
+        element: <UserReporting />,
+        loader: userReportingLoader,
+        action: reportingAction,
+      },
     ],
   },
 ]);
