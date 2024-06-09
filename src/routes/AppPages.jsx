@@ -7,7 +7,7 @@ import Root from "../modules/root/Root";
 import LoginPage from "../modules/login/LoginPage";
 import DashBoard from "../modules/dashboard/screens/DashBoard";
 import { loader as dashboardLoader } from "../modules/dashboard/DashBloardLoader";
-import {loader as approvedPostLoader} from "../modules/post/ApprovedPostLoader"
+import { loader as approvedPostLoader } from "../modules/post/ApprovedPostLoader";
 import ApprovedPost from "../modules/post/screens/ApprovedPost";
 import RejectedPost from "../modules/post/screens/RejectedPost";
 import PendingPost from "../modules/post/screens/PendingPost";
@@ -32,7 +32,7 @@ export const AppPages = createBrowserRouter([
       {
         path: "approved_post",
         element: <ApprovedPost />,
-        useE: approvedPostLoader,
+        loader: approvedPostLoader,
         action: postAction,
       },
       {
