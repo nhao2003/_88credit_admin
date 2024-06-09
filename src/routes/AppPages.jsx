@@ -25,6 +25,11 @@ import UserReporting from "../modules/reporting/screens/UserReporting";
 import { loader as pendingReportingLoader } from "../modules/reporting/screens/PostReporting";
 import { loader as userReportingLoader } from "../modules/reporting/screens/UserReporting";
 import { action as reportingAction } from "../modules/reporting/action";
+import User from "../modules/user/screens/User";
+import VertificatedUser from "../modules/user/screens/VertificatedUser";
+import PendingUser from "../modules/user/screens/PendingUser";
+import { loader as userLoader } from "../modules/user/screens/User";
+import { action as userAction } from "../modules/user/action";
 
 export const AppPages = createBrowserRouter([
   {
@@ -94,6 +99,21 @@ export const AppPages = createBrowserRouter([
         element: <UserReporting />,
         loader: userReportingLoader,
         action: reportingAction,
+      },
+
+      {
+        path: "user",
+        element: <User />,
+        loader: userLoader,
+        action: userAction,
+      },
+      {
+        path: "verificated_user",
+        element: <VertificatedUser />,
+      },
+      {
+        path: "pending_user",
+        element: <PendingUser />,
       },
     ],
   },
