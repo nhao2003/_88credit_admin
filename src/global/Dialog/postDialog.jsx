@@ -44,14 +44,14 @@ function PostDialog(props) {
         {item.user && (
           <Form.Item label="Người đăng">
             <Typography.Text>
-              {`${item.user.first_name} ${item.user.last_name}`}
+              {`${item.user.firstName} ${item.user.lastName}`}
             </Typography.Text>
           </Form.Item>
         )}
 
         <Form.Item label="Ngày đăng">
           <Typography.Text>
-            {moment(item.posted_date).format("hh:mm DD/MM/YYYY")}
+            {moment(item.createdAt).format("hh:mm DD/MM/YYYY")}
           </Typography.Text>
         </Form.Item>
 
@@ -64,55 +64,53 @@ function PostDialog(props) {
         </Form.Item>
 
         <Form.Item label="Loại lý do vay">
-          <Typography.Text>{item.loan_reason_type}</Typography.Text>
+          <Typography.Text>{item.loanReason}</Typography.Text>
         </Form.Item>
 
         <Form.Item label="Lý do vay">
-          <Typography.Text>{item.loan_reason}</Typography.Text>
+          <Typography.Text>{item.loanReasonDescription}</Typography.Text>
         </Form.Item>
 
         <Form.Item label="Số tiền vay">
           {item.type === "lending" ? (
-            <Typography.Text>{`${item.loan_amount} - ${item.max_loan_amount}`}</Typography.Text>
+            <Typography.Text>{`${item.amount} - ${item.maxAmount}`}</Typography.Text>
           ) : (
-            <Typography.Text>{item.loan_amount} VNĐ</Typography.Text>
+            <Typography.Text>{item.amount} VNĐ</Typography.Text>
           )}
         </Form.Item>
 
         <Form.Item label="Thời hạn vay">
           {/* <Typography.Text>{item.tenure_months} tháng</Typography.Text> */}
           {item.type === "lending" ? (
-            <Typography.Text>{`${item.tenure_months} - ${item.max_tenure_months} tháng`}</Typography.Text>
+            <Typography.Text>{`${item.duration} - ${item.maxDuration} tháng`}</Typography.Text>
           ) : (
-            <Typography.Text>{item.tenure_months} tháng</Typography.Text>
+            <Typography.Text>{item.duration} tháng</Typography.Text>
           )}
         </Form.Item>
 
         <Form.Item label="Lãi suất">
           {item.type === "lending" ? (
-            <Typography.Text>{`${item.interest_rate * 100}% - ${
-              item.max_interest_rate * 100
+            <Typography.Text>{`${item.interestRate * 100}% - ${
+              item.maxInterestRate * 100
             }%`}</Typography.Text>
           ) : (
-            <Typography.Text>{item.interest_rate * 100}%</Typography.Text>
+            <Typography.Text>{item.interestRate * 100}%</Typography.Text>
           )}
         </Form.Item>
 
         <Form.Item label="Lãi suất quá hạn">
           {item.type === "lending" ? (
-            <Typography.Text>{`${item.overdue_interest_rate * 100}% - ${
-              item.max_overdue_interest_rate * 100
+            <Typography.Text>{`${item.overdueInterestRate * 100}% - ${
+              item.maxOverdueInterestRate * 100
             }%`}</Typography.Text>
           ) : (
-            <Typography.Text>
-              {item.overdue_interest_rate * 100}%
-            </Typography.Text>
+            <Typography.Text>{item.overdueInterestRate * 100}%</Typography.Text>
           )}
         </Form.Item>
 
         {item.status === "rejected" && (
           <Form.Item label="Lý do từ chối">
-            <Typography.Text>{item.rejected_reason ?? ""}</Typography.Text>
+            <Typography.Text>{item.rejectedReason ?? ""}</Typography.Text>
           </Form.Item>
         )}
 

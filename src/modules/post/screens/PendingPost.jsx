@@ -1,4 +1,4 @@
-import React from 'react';
+import React from "react";
 import {
   Tabs,
   Card,
@@ -9,40 +9,37 @@ import {
   Space,
   Input,
   Modal,
-} from 'antd';
-import Search from 'antd/es/input/Search';
-import { useState } from 'react';
-import { useLoaderData } from 'react-router-dom';
-import PostTable from '../components/TableOfPost';
+} from "antd";
+import Search from "antd/es/input/Search";
+import { useState } from "react";
+import { useLoaderData } from "react-router-dom";
+import PostTable from "../components/TableOfPost";
 //import ApiService from '../../../service/ApiService';
 import ApiService from "../../../services/ApiService";
 //import Breadcrumbs from '../../../Components/BreadCrumb/BreadCrumb';
 import Breadcrumbs from "../../../global/BreadCrumb/BreadCrumb";
-import { borrowingColumns, lendingColumns } from '../components/tableColumn';
-import { approvePost, rejectPost } from '../action';
-import { toast } from 'react-toastify';
-import 'react-toastify/dist/ReactToastify.css'; // Import the styles
-import { ToastContainer } from 'react-toastify';
+import { borrowingColumns, lendingColumns } from "../components/tableColumn";
+import { approvePost, rejectPost } from "../action";
+import { toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css"; // Import the styles
+import { ToastContainer } from "react-toastify";
 
 //function loader to call API
-// export async function loader() {
-//   const response = await ApiService.get(
-//     "posts?post_status[eq]='pending'&page=all",
-//   );
-//   const posts = response.result;
-//   console.log('length', posts.length);
-//   if (!posts) {
-//     throw new Response('', {
-//       status: 404,
-//       statusText: 'Not Found',
-//     });
-//   }
-//   const postLending = posts.filter((post) => post.type === 'lending');
-//   const postBorrowing = posts.filter((post) => post.type === 'borrowing');
-//   console.log('lease', postLending);
-//   console.log('no lease', postBorrowing);
-//   return { postLending, postBorrowing };
-// }
+export async function loader() {
+  const response = await ApiService.get("post?status[eq]=pending");
+  const posts = response.data.items;
+  console.log("length", posts.length);
+  if (!posts) {
+    throw new Response("", {
+      status: 404,
+      statusText: "Not Found",
+    });
+  }
+  const postLending = posts.filter((post) => post.type === "lending");
+  const postBorrowing = posts.filter((post) => post.type === "borrowing");
+
+  return { postLending, postBorrowing };
+}
 
 function PendingPost(props) {
   const { Title } = Typography;
@@ -50,8 +47,8 @@ function PendingPost(props) {
   const [postsLending, setPostsLending] = useState(pLending);
   const [postsBorrowing, setPostsBorrowing] = useState(postBorrowing);
   const actionColumn = {
-    title: 'Hành động',
-    key: 'action',
+    title: "Hành động",
+    key: "action",
     render: (_, record) => (
       <Space size="middle">
         <Button
@@ -83,8 +80,8 @@ function PendingPost(props) {
   };
   const tabs = [
     {
-      key: '1',
-      label: 'Cho vay',
+      key: "1",
+      label: "Cho vay",
       children: (
         <PostTable
           columns={[...lendingColumns, actionColumn]}
@@ -93,8 +90,8 @@ function PendingPost(props) {
       ),
     },
     {
-      key: '2',
-      label: 'Cần vay',
+      key: "2",
+      label: "Cần vay",
       children: (
         <PostTable
           columns={[...borrowingColumns, actionColumn]}
@@ -129,30 +126,30 @@ function PendingPost(props) {
           setIsModalVisible(false);
           setRejectReason(null);
           setCurrentPost(null);
-          console.log('res', currentPost);
-          toast.success('Từ chối bài đăng thành công');
-          if (currentPost.type === 'lending') {
+          console.log("res", currentPost);
+          toast.success("Từ chối bài đăng thành công");
+          if (currentPost.type === "lending") {
             setPostsLending(
-              postsLending.filter((post) => post.id !== currentPost.id),
+              postsLending.filter((post) => post.id !== currentPost.id)
             );
           } else {
-            console.log('no lease');
+            console.log("no lease");
             setPostsBorrowing(
-              postsBorrowing.filter((post) => post.id !== currentPost.id),
+              postsBorrowing.filter((post) => post.id !== currentPost.id)
             );
           }
         }
       })
       .catch((err) => {
         console.log(err);
-        toast.error('Có lỗi xảy ra, vui lòng thử lại sau');
+        toast.error("Có lỗi xảy ra, vui lòng thử lại sau");
       });
   }
 
   function handleApprovePost(id) {
     approvePost(id)
       .then((res) => {
-        toast.success('Duyệt bài đăng thành công');
+        toast.success("Duyệt bài đăng thành công");
         if (postsLending.find((post) => post.id === id)) {
           setPostsLending(postsLending.filter((post) => post.id !== id));
         } else {
@@ -161,7 +158,7 @@ function PendingPost(props) {
       })
       .catch((err) => {
         console.log(err);
-        toast.error('Có lỗi xảy ra, vui lòng thử lại sau');
+        toast.error("Có lỗi xảy ra, vui lòng thử lại sau");
       });
   }
 
@@ -171,7 +168,7 @@ function PendingPost(props) {
     <div>
       <Card>
         <Breadcrumbs></Breadcrumbs>
-        <Row style={{ marginBottom: '16px' }}>
+        <Row style={{ marginBottom: "16px" }}>
           <Col>
             <ToastContainer />
 

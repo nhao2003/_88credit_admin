@@ -1,4 +1,4 @@
-import React from 'react';
+import React from "react";
 import {
   Tabs,
   Card,
@@ -11,41 +11,38 @@ import {
   Space,
   Input,
   Modal,
-} from 'antd';
-import Search from 'antd/es/input/Search';
-import { useState, useRef, useEffect } from 'react';
+} from "antd";
+import Search from "antd/es/input/Search";
+import { useState, useRef, useEffect } from "react";
 import {
   useNavigate,
   useLoaderData,
   useFetcher,
   Form,
   redirect,
-} from 'react-router-dom';
-import PostTable from '../components/TableOfPost';
+} from "react-router-dom";
+import PostTable from "../components/TableOfPost";
 import ApiService from "../../../services/ApiService";
-import Breadcrumbs from '../../../global/BreadCrumb/BreadCrumb';
-import moment from 'moment';
-import { borrowingColumns, lendingColumns } from '../components/tableColumn';
+import Breadcrumbs from "../../../global/BreadCrumb/BreadCrumb";
+import moment from "moment";
+import { borrowingColumns, lendingColumns } from "../components/tableColumn";
 
 // //function loader to call API
-// export async function loader() {
-//   const response = await ApiService.get(
-//     "posts?post_status[eq]='rejected'&page=all",
-//   );
-//   const posts = response.result;
-//   console.log('length', posts.length);
-//   if (!posts) {
-//     throw new Response('', {
-//       status: 404,
-//       statusText: 'Not Found',
-//     });
-//   }
-//   const postLending = posts.filter((post) => post.type === 'lending');
-//   const postBorrowing = posts.filter((post) => post.type === 'borrowing');
-//   console.log('lease', postLending);
-//   console.log('no lease', postBorrowing);
-//   return { postLending, postBorrowing };
-// }
+export async function loader() {
+  const response = await ApiService.get("post?status[eq]=rejected");
+  const posts = response.data.items;
+  console.log("length", posts.length);
+  if (!posts) {
+    throw new Response("", {
+      status: 404,
+      statusText: "Not Found",
+    });
+  }
+  const postLending = posts.filter((post) => post.type === "lending");
+  const postBorrowing = posts.filter((post) => post.type === "borrowing");
+
+  return { postLending, postBorrowing };
+}
 
 function RejectedPost(props) {
   const { Title } = Typography;
@@ -53,8 +50,8 @@ function RejectedPost(props) {
   const fetcher = useFetcher();
 
   const actionColumn = {
-    title: 'Hành động',
-    key: 'action',
+    title: "Hành động",
+    key: "action",
     render: (_, record) => (
       <Space size="middle">
         <Button
@@ -84,8 +81,8 @@ function RejectedPost(props) {
   };
   const tabs = [
     {
-      key: '1',
-      label: 'Cho vay',
+      key: "1",
+      label: "Cho vay",
       children: (
         <PostTable
           columns={[
@@ -97,8 +94,8 @@ function RejectedPost(props) {
       ),
     },
     {
-      key: '2',
-      label: 'Cần vay',
+      key: "2",
+      label: "Cần vay",
       children: (
         <PostTable
           columns={[
@@ -130,14 +127,14 @@ function RejectedPost(props) {
     <div>
       <Card>
         <Breadcrumbs></Breadcrumbs>
-        <Row style={{ marginBottom: '16px' }}>
+        <Row style={{ marginBottom: "16px" }}>
           <Col>
             <Title level={3} style={{ margin: 0, padding: 0 }}>
               DS Bài đăng đã từ chối duyệt
             </Title>
           </Col>
         </Row>
-        <Row style={{ marginBottom: '12px' }}>
+        <Row style={{ marginBottom: "12px" }}>
           <Col>
             <Search
               placeholder="Nhập thông tin cần tìm..."
@@ -158,7 +155,7 @@ function RejectedPost(props) {
           onCancel={handleCancel}
         >
           <Form
-            style={{ marginTop: '24px' }}
+            style={{ marginTop: "24px" }}
             name="basic"
             labelCol={{ span: 6 }}
             wrapperCol={{ span: 16 }}

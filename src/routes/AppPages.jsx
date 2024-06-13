@@ -7,7 +7,9 @@ import Root from "../modules/root/Root";
 import LoginPage from "../modules/login/LoginPage";
 import DashBoard from "../modules/dashboard/screens/DashBoard";
 import { loader as dashboardLoader } from "../modules/dashboard/DashBloardLoader";
-import { loader as approvedPostLoader } from "../modules/post/ApprovedPostLoader";
+import { loader as approvedPostLoader } from "../modules/post/screens/ApprovedPost";
+import { loader as pendingPostLoader } from "../modules/post/screens/PendingPost";
+import { loader as rejectedPostLoader } from "../modules/post/screens/RejectedPost";
 import ApprovedPost from "../modules/post/screens/ApprovedPost";
 import RejectedPost from "../modules/post/screens/RejectedPost";
 import PendingPost from "../modules/post/screens/PendingPost";
@@ -56,13 +58,13 @@ export const AppPages = createBrowserRouter([
       {
         path: "rejected_post",
         element: <RejectedPost />,
-        loader: approvedPostLoader,
+        loader: rejectedPostLoader,
         action: postAction,
       },
       {
         path: "pending_post",
         element: <PendingPost />,
-        loader: approvedPostLoader,
+        loader: pendingPostLoader,
         action: postAction,
       },
       {

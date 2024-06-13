@@ -6,11 +6,12 @@ export async function action({ request, params }) {
   const id = data.get("id");
   console.log("id", id);
   const type = data.get("type");
+  console.log("type", type);
   if (type === "approve") {
     try {
       console.log("approve request");
       const result = await ApiService.post({
-        url: `posts/approve?id=${id}`,
+        url: `${id}/approve`,
         data: {},
       });
       if (result.status == "success") {
@@ -29,9 +30,9 @@ export async function action({ request, params }) {
     try {
       console.log("reject request");
       const result = await ApiService.post({
-        url: `reject-post/${id}`,
+        url: `${id}/reject`,
         data: {
-          rejected_reason: data.get("rejected_reason"),
+          rejectionReason: data.get("rejected_reason"),
         },
       });
       console.log("rejected results", result);
@@ -70,14 +71,14 @@ export async function action({ request, params }) {
 }
 
 export function rejectPost(id, reason) {
-  return ApiService.patch({
-    url: `reject-post/${id}`,
+  return ApiService.post({
+    url: `post/${id}/reject`,
     data: {
-      rejected_reason: reason,
+      rejectedReason: reason,
     },
   });
 }
 
 export function approvePost(id) {
-  return ApiService.patch({ url: `approve-post/${id}`, data: {} });
+  return ApiService.post({ url: `post/${id}/approve`, data: {} });
 }
