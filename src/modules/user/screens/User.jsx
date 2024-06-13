@@ -27,22 +27,16 @@ import moment from "moment";
 
 //function loader to call API
 export async function loader() {
-  // const response = await ApiService.get("users");
-  // const users = response.result;
-  // console.log("length", users.length);
-  // if (!users) {
-  //   throw new Response("", {
-  //     status: 404,
-  //     statusText: "Not Found",
-  //   });
-  // }
-  // //const postLease = posts.filter(post => post.is_lease === true);
-  // //const postNoLease = posts.filter(post => post.is_lease === false);
-  // // console.log("lease", postLease)
-  // // console.log("no lease", postNoLease)
-  // console.log("users: ", users);
-  // return { users };
-  return [];
+  const response = await ApiService.get("user");
+  const users = response.data.items;
+  console.log("users", users);
+  if (!users) {
+    throw new Response("", {
+      status: 404,
+      statusText: "Not Found",
+    });
+  }
+  return { users };
 }
 
 function User(props) {
@@ -54,13 +48,13 @@ function User(props) {
   const columns = [
     {
       title: "Tên",
-      dataIndex: "first_name",
-      key: "first_name",
+      dataIndex: "firstName",
+      key: "firstName",
     },
     {
       title: "Họ",
-      dataIndex: "last_name",
-      key: "last_name",
+      dataIndex: "lastName",
+      key: "lastName",
     },
     {
       title: "Ngày sinh",
@@ -158,289 +152,6 @@ function User(props) {
           </fetcher.Form>
         </Space>
       ),
-    },
-  ];
-
-  const data1 = [
-    {
-      key: "1",
-      name: "Nhà sổ hồng riêng 5x15 ngã 3 Lý Thường Kiệt, Thủ Đức",
-      author: "Nguyễn Thành Trung",
-      description: "Mô tả 1",
-      price: 1000000,
-      area: 100,
-      uploadDate: "01/01/2023",
-      propertyType: "Loại 1",
-    },
-    {
-      key: "2",
-      name: "Nhà 2",
-      author: "Người 2",
-      description: "Mô tả 2",
-      price: 2000000,
-      area: 200,
-      uploadDate: "02/01/2023",
-      propertyType: "Loại 2",
-    },
-    {
-      key: "3",
-      name: "Nhà 3",
-      author: "Người 2",
-      description: "Mô tả 2",
-      price: 2000000,
-      area: 200,
-      uploadDate: "02/01/2023",
-      propertyType: "Loại 2",
-    },
-    {
-      key: "4",
-      name: "Nhà 4",
-      author: "Người 2",
-      description: "Mô tả 2",
-      price: 2000000,
-      area: 200,
-      uploadDate: "02/01/2023",
-      propertyType: "Loại 2",
-    },
-    {
-      key: "5",
-      name: "Nhà 5",
-      author: "Người 2",
-      description: "Mô tả 2",
-      price: 2000000,
-      area: 200,
-      uploadDate: "02/01/2023",
-      propertyType: "Loại 2",
-    },
-    {
-      key: "6",
-      name: "Nhà 6",
-      author: "Người 2",
-      description: "Mô tả 2",
-      price: 2000000,
-      area: 200,
-      uploadDate: "02/01/2023",
-      propertyType: "Loại 2",
-    },
-    {
-      key: "7",
-      name: "Nhà 7",
-      author: "Người 2",
-      description: "Mô tả 2",
-      price: 2000000,
-      area: 200,
-      uploadDate: "02/01/2023",
-      propertyType: "Loại 2",
-    },
-    {
-      key: "8",
-      name: "Nhà 8",
-      author: "Người 2",
-      description: "Mô tả 2",
-      price: 2000000,
-      area: 200,
-      uploadDate: "02/01/2023",
-      propertyType: "Loại 2",
-    },
-    {
-      key: "9",
-      name: "Nhà 9",
-      author: "Người 2",
-      description: "Mô tả 2",
-      price: 2000000,
-      area: 200,
-      uploadDate: "02/01/2023",
-      propertyType: "Loại 2",
-    },
-    {
-      key: "10",
-      name: "Nhà 10",
-      author: "Người 2",
-      description: "Mô tả 2",
-      price: 2000000,
-      area: 200,
-      uploadDate: "02/01/2023",
-      propertyType: "Loại 2",
-    },
-    {
-      key: "11",
-      name: "Nhà 11",
-      author: "Người 2",
-      description: "Mô tả 2",
-      price: 2000000,
-      area: 200,
-      uploadDate: "02/01/2023",
-      propertyType: "Loại 2",
-    },
-    {
-      key: "12",
-      name: "Nhà 12",
-      author: "Người 2",
-      description: "Mô tả 2",
-      price: 2000000,
-      area: 200,
-      uploadDate: "02/01/2023",
-      propertyType: "Loại 2",
-    },
-    // Thêm các dòng dữ liệu khác tại đây (nếu cần)
-  ];
-
-  const data2 = [
-    {
-      key: "1",
-      name: "Nhà xr",
-      author: "Người 1",
-      description: "Mô tả 1",
-      price: 2000000,
-      area: 100,
-      uploadDate: "01/01/2023",
-      propertyType: "Loại 1",
-    },
-    {
-      key: "2",
-      name: "Nhà bahb",
-      author: "Người 2",
-      description: "Mô tả 2",
-      price: 2000000,
-      area: 200,
-      uploadDate: "02/01/2023",
-      propertyType: "Loại 2",
-    },
-    {
-      key: "2",
-      name: "Nhà nfasjn",
-      author: "Người 2",
-      description: "Mô tả 2",
-      price: 2000000,
-      area: 200,
-      uploadDate: "02/01/2023",
-      propertyType: "Loại 2",
-    },
-    {
-      key: "2",
-      name: "Nhà amkdkfma",
-      author: "Người 2",
-      description: "Mô tả 2",
-      price: 2000000,
-      area: 200,
-      uploadDate: "02/01/2023",
-      propertyType: "Loại 2",
-    },
-    {
-      key: "2",
-      name: "Nhà njandjnf",
-      author: "Người 2",
-      description: "Mô tả 2",
-      price: 2000000,
-      area: 200,
-      uploadDate: "02/01/2023",
-      propertyType: "Loại 2",
-    },
-    {
-      key: "1",
-      name: "Nhà xr",
-      author: "Người 1",
-      description: "Mô tả 1",
-      price: 2000000,
-      area: 100,
-      uploadDate: "01/01/2023",
-      propertyType: "Loại 1",
-    },
-    {
-      key: "2",
-      name: "Nhà bahb",
-      author: "Người 2",
-      description: "Mô tả 2",
-      price: 2000000,
-      area: 200,
-      uploadDate: "02/01/2023",
-      propertyType: "Loại 2",
-    },
-    {
-      key: "2",
-      name: "Nhà nfasjn",
-      author: "Người 2",
-      description: "Mô tả 2",
-      price: 2000000,
-      area: 200,
-      uploadDate: "02/01/2023",
-      propertyType: "Loại 2",
-    },
-    {
-      key: "2",
-      name: "Nhà amkdkfma",
-      author: "Người 2",
-      description: "Mô tả 2",
-      price: 2000000,
-      area: 200,
-      uploadDate: "02/01/2023",
-      propertyType: "Loại 2",
-    },
-    {
-      key: "2",
-      name: "Nhà njandjnf",
-      author: "Người 2",
-      description: "Mô tả 2",
-      price: 2000000,
-      area: 200,
-      uploadDate: "02/01/2023",
-      propertyType: "Loại 2",
-    },
-    {
-      key: "2",
-      name: "Nhà nfasjn",
-      author: "Người 2",
-      description: "Mô tả 2",
-      price: 2000000,
-      area: 200,
-      uploadDate: "02/01/2023",
-      propertyType: "Loại 2",
-    },
-    {
-      key: "2",
-      name: "Nhà amkdkfma",
-      author: "Người 2",
-      description: "Mô tả 2",
-      price: 2000000,
-      area: 200,
-      uploadDate: "02/01/2023",
-      propertyType: "Loại 2",
-    },
-    {
-      key: "2",
-      name: "Nhà njandjnf",
-      author: "Người 2",
-      description: "Mô tả 2",
-      price: 2000000,
-      area: 200,
-      uploadDate: "02/01/2023",
-      propertyType: "Loại 2",
-    },
-    // Thêm các dòng dữ liệu khác tại đây (nếu cần)
-  ];
-
-  const tabs = [
-    {
-      key: "1",
-      label: "Người dùng",
-      children: <PostTable columns={columns} data={data1} abc="người dùng" />,
-    },
-    {
-      key: "2",
-      label: "Bài đăng",
-      children: <PostTable columns={columns} data={data2} abc="bài đăng" />,
-    },
-    {
-      key: "3",
-      label: "Cuộc trò chuyện",
-      children: (
-        <PostTable columns={columns} data={data2} abc="cuộc trò chuyện" />
-      ),
-    },
-    {
-      key: "4",
-      label: "Bình luận",
-      children: <PostTable columns={columns} data={data2} abc="bình luận" />,
     },
   ];
 
