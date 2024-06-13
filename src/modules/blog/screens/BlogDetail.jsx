@@ -10,8 +10,9 @@ import moment from "moment";
 
 export async function loader({ params }) {
   console.log("params:", params);
-  const res = await ApiService.get(`blogs?id[eq]='${params.id}'`);
-  const blog = res.result;
+  const res = await ApiService.get(`blog/${params.id}`);
+  const blog = res.data;
+  console.log("This is blog: ", blog);
   if (!blog) {
     throw new Response("", {
       status: 404,
@@ -50,7 +51,7 @@ function BlogDetail() {
                 danger
                 htmlType="submit"
                 name="id"
-                value={blog[0].id}
+                value={blog.id}
               >
                 Xóa
               </Button>
@@ -60,7 +61,7 @@ function BlogDetail() {
               type="primary"
               size="middle"
               onClick={() => {
-                navigate(`/blogs/edit/${blog[0].id}`);
+                navigate(`/blogs/edit/${blog.id}`);
               }}
             >
               Chỉnh sửa
@@ -68,18 +69,18 @@ function BlogDetail() {
           </Space>
         </Flex>
         <Title level={3} style={titleStyle}>
-          {blog[0].title}
+          {blog.title}
         </Title>
         <Flex vertical align="flex-start">
           <Title level={5} italic style={titleStyle}>
-            Đăng ngày: {moment(blog[0].created_at).format("DD/MM/YYYY")}
+            Đăng ngày: {moment(blog.created_at).format("DD/MM/YYYY")}
           </Title>
           <Title level={5} italic style={titleStyle}>
-            Tác giả: {blog[0].author}
+            Tác giả: {blog.author}
           </Title>
         </Flex>
         <div style={containerStyle}>
-          <HtmlContent html={blog[0].content} />
+          <HtmlContent html={blog.content} />
         </div>
       </Flex>
     </Card>

@@ -18,6 +18,7 @@ const { TextArea } = Input;
 const { Title } = Typography;
 import Breadcrumbs from "../../../global/BreadCrumb/BreadCrumb";
 import Preview from "../../../global/Blog/Preview";
+
 function AddNewPage() {
   const [html, setHtml] = useState("");
   const [title, setTitle] = useState("");

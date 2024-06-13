@@ -69,24 +69,24 @@ export const AppPages = createBrowserRouter([
         path: "blogs",
         element: <Blog />,
         loader: blogLoader,
-        // action: blogAction,
+        action: blogAction,
       },
       {
         path: "blogs/:id",
         element: <BlogDetail />,
         loader: blogDetailLoader,
-        // action: blogAction,
+        action: blogAction,
       },
       {
         path: "blogs/add",
         element: <AddNewPage />,
-        // action: blogAction,
+        action: blogAction,
       },
       {
         path: "blogs/edit/:id",
         element: <EditBlog />,
         loader: EditBlogLoader,
-        // action: blogAction,
+        action: blogAction,
       },
       {
         path: "post_reporting",

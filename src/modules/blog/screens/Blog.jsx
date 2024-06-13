@@ -11,11 +11,9 @@ import ApiService from "../../../services/ApiService";
 
 //function loader to call API
 export async function loader() {
-  // const res = await ApiService.get("blogs?page=all&is_active[eq]=true");
-  // console.log("This is blogs: ", res);
-  // const blogs = res.result;
-  // return { blogs };
-  return { blogs: [] };
+  const res = await ApiService.get("blog");
+  const blogs = res.data.items;
+  return { blogs };
 }
 
 export default function Blog() {
@@ -23,14 +21,6 @@ export default function Blog() {
   const fetcher = useFetcher();
 
   const navigate = useNavigate();
-
-  const [isModalOpen, setIsModalOpen] = useState(false);
-
-  const [isModalOpen1, setIsModalOpen1] = useState(false);
-
-  const [isModalOpen2, setIsModalOpen2] = useState(false);
-
-  const [item, setItem] = useState({});
 
   return (
     <div>
@@ -82,7 +72,6 @@ export default function Blog() {
             pageSize: 3,
           }}
           dataSource={Array.isArray(blogs) ? blogs : []}
-          // khi onclick co the navigate sang trang khac
           renderItem={(item) => {
             return (
               <List.Item
@@ -97,10 +86,14 @@ export default function Blog() {
                     type="primary"
                     size="middle"
                     icon={<EditOutlined />}
+                    onClick={(e) => {
+                      e.stopPropagation();
+                      navigate(`/blogs/${item.id}/edit`);
+                    }}
                   >
                     Sửa
                   </Button>,
-                  <fetcher.Form method="patch" key={item.id}>
+                  <fetcher.Form method="post" key={item.id}>
                     <Button
                       onClick={(e) => {
                         e.stopPropagation();
@@ -120,10 +113,8 @@ export default function Blog() {
               >
                 <List.Item.Meta
                   title={<a href={item.href}>{item.title}</a>}
-                  description={`${item.short_description}
-                  `}
+                  description={`${item.short_description}`}
                 />
-                {/* {item.content} */}
               </List.Item>
             );
           }}
