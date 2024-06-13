@@ -25,12 +25,12 @@ export async function action({ request, params }) {
       return redirect("/blogs");
     }
 
-    if (!title || !description || !author || !thumbnail || !content) {
-      alert("Vui lòng điền đầy đủ thông tin");
-      return null;
-    }
-
     if (type === "create") {
+      if (!title || !description || !author || !thumbnail || !content) {
+        alert("Vui lòng điền đầy đủ thông tin");
+        return null;
+      }
+
       const body = {
         title,
         shortDescription: description,
@@ -49,7 +49,7 @@ export async function action({ request, params }) {
         thumbnail,
         content,
       };
-      const result = await ApiService.patch({ url: `blog/${id}`, data });
+      const result = await ApiService.put({ url: `blog/${id}`, data });
       if (result.status === "success") {
         alert("Chỉnh sửa bài blog thành công");
         return redirect(`/blogs/${id}`);

@@ -38,6 +38,18 @@ const ApiService = {
       throw error;
     }
   },
+  put: async ({ url, data }) => {
+    try {
+      const response = await api.put(`/${url}`, data);
+      const result = response.data;
+      console.log("data from API service helper:", response);
+      return result;
+    } catch (error) {
+      // Handle error
+      console.error("Error while sending data:", error);
+      throw error;
+    }
+  },
   patch: async ({ url, data }) => {
     try {
       const response = await api.patch(`/${url}`, data);

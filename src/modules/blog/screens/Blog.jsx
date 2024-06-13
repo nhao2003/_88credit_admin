@@ -88,7 +88,7 @@ export default function Blog() {
                     icon={<EditOutlined />}
                     onClick={(e) => {
                       e.stopPropagation();
-                      navigate(`/blogs/${item.id}/edit`);
+                      navigate(`/blogs/edit/${item.id}`);
                     }}
                   >
                     Sửa

@@ -21,7 +21,8 @@ import ApiService from "../../../services/ApiService";
 
 export async function loader({ params }) {
   console.log("params:", params);
-  const blog = await ApiService.get(`blogs?id[eq]='${params.id}'`);
+  const res = await ApiService.get(`blog/${params.id}`);
+  const blog = res.data;
   console.log("blogs", blog);
   if (!blog) {
     throw new Response("", {
@@ -29,7 +30,7 @@ export async function loader({ params }) {
       statusText: "Not Found",
     });
   }
-  return { blog: blog.result[0] };
+  return { blog: blog };
 }
 function EditBlog() {
   const [html, setHtml] = useState("");
