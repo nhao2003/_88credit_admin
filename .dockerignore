@@ -4,10 +4,6 @@ node_modules
 # Ignore build output
 dist
 
-# Ignore development files
-*.ts
-*.tsx
-
 # Ignore editor and IDE files
 .vscode
 .idea
