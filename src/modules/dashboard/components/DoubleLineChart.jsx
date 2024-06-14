@@ -30,7 +30,7 @@ const DoubleLineChart = ({ pieChartData }) => {
   for (const i of pieChartData) {
     const month = i.month;
     const type = i.type;
-    const total = Number(i.total);
+    const total = Number(i.count);
 
     if (!totalsByMonth[month]) {
       totalsByMonth[month] = { lending: 0, borrowing: 0 };

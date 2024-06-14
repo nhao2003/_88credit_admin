@@ -1,11 +1,12 @@
-import { DashboardRepo } from "../../repository/DashBoardRepo";
+import ApiService from "../../services/ApiService";
 
 export async function loader() {
-  const result = await DashboardRepo();
+  const res = await ApiService.get("dashboard");
+  const result = res.data;
   const dashboard = {
-    top_10_users_have_most_posts: result.top_10_users_have_most_posts,
-    countUserPerStatus: result.count_user_per_status,
-    countPostByStatus: result.count_post_by_status,
+    top_10_users_have_most_posts: result.topUserHasMostPost,
+    countUserPerStatus: result.numberOfUsersPerStatus,
+    countPostByStatus: result.numberOfPostPerstatus,
     countReportPerStatus: [
       {
         status: "pending",
@@ -16,9 +17,29 @@ export async function loader() {
         count: 2,
       },
     ],
-    countPostByTypeInMonthOfYear: result.count_post_by_type_in_month_of_year,
-    countLoanRequestByLoanReasonTypeInYear:
-      result.count_loan_request_by_loan_reason_type_in_year,
+    countPostByTypeInMonthOfYear: result.countPostByTypeInMonthOfYear,
+    countLoanRequestByLoanReasonTypeInYear: [
+      {
+        loan_reason_type: "carBuying",
+        total: 10,
+      },
+      {
+        loan_reason_type: "education",
+        total: 5,
+      },
+      {
+        loan_reason_type: "travel",
+        total: 6,
+      },
+      {
+        loan_reason_type: "shopping",
+        total: 1,
+      },
+      {
+        loan_reason_type: "medical",
+        total: 2,
+      },
+    ],
     countSubscriptionPackage: [
       {
         package_id: 1,
@@ -46,7 +67,7 @@ export async function loader() {
         count: 50,
       },
     ],
-    countBlog: 10,
+    countBlog: result.numberOfBlog,
     //countSubscriptionPackage: 10,
   };
   return { dashboard };

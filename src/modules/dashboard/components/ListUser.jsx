@@ -61,7 +61,7 @@ const ListUser = ({ data }) => {
                   lineHeight: "22px",
                 }}
               >
-                {i.first_name + " " + i.last_name}
+                {i.firstName + " " + i.lastName}
               </div>
             </div>
             <div
@@ -73,7 +73,7 @@ const ListUser = ({ data }) => {
                 textAlign: "right",
               }}
             >
-              {i.post_count}
+              {i.count}
             </div>
           </div>
         );

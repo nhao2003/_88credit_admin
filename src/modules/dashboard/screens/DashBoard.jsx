@@ -27,14 +27,21 @@ export default function DashBoard() {
         </div>
         <div style={{ fontSize: "30px", fontWeight: "600" }}>
           {dashboard.countPostByStatus.map((i) => {
-            if (i.status == "pending") return i.total;
+            if (i.status == "pending") return i.count;
           })}
         </div>
         <Divider />
-        <div>
+        <div style={{ marginBottom: "10px" }}>
           Số bài đăng đã duyệt:{" "}
           {dashboard.countPostByStatus.map((i) => {
-            if (i.status == "approved") return i.total;
+            if (i.status == "approved") return i.count;
+          })}
+        </div>
+
+        <div style={{ marginBottom: "10px" }}>
+          Số bài đăng bị từ chối:{" "}
+          {dashboard.countPostByStatus.map((i) => {
+            if (i.status == "rejected") return i.count;
           })}
         </div>
       </Col>
@@ -66,19 +73,19 @@ export default function DashBoard() {
           Số người dùng đang sử dụng
         </div>
         <div style={{ fontSize: "30px", fontWeight: "600" }}>
-          {dashboard.countUserPerStatus.num_of_unverified +
-            dashboard.countUserPerStatus.num_of_verified +
-            dashboard.countUserPerStatus.num_of_banned}
+          {dashboard.countUserPerStatus[0].count}
         </div>
         <Divider />
         <div style={{ marginBottom: "10px" }}>
-          Số người dùng xác thực: {dashboard.countUserPerStatus.num_of_verified}
+          Số người dùng xác thực: {dashboard.countUserPerStatus[0].count}
         </div>
         <div style={{ marginBottom: "10px" }}>
-          Số người dùng chưa: {dashboard.countUserPerStatus.num_of_unverified}
+          Số người dùng chưa:{" "}
+          {dashboard.countUserPerStatus[1] === null ? "0" : "2"}
         </div>
         <div style={{ marginBottom: "10px" }}>
-          Số người dùng bị ban: {dashboard.countUserPerStatus.num_of_banned}
+          Số người dùng bị ban:{" "}
+          {dashboard.countUserPerStatus[2] === null ? "0" : "1"}
         </div>
       </Col>
       <Col className="gutter-row" span={6}>

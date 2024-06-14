@@ -1,7 +1,16 @@
 import ApiService from "../services/ApiService";
 
 export async function DashboardRepo() {
-  // const result = (await ApiService.get("statistic")).result;
+  const response = await ApiService.get("dashboard");
+  console.log(response);
+  const dashboard = {
+    numberOfUsersPerStatus: result.numberOfUsersPerStatus,
+    numberOfPostPerstatus: result.numberOfPostPerstatus,
+    numberOfBlog: result.numberOfBlog,
+    topUserHasMostPost: result.topUserHasMostPost,
+    countPostByTypeInMonthOfYear: result.countPostByTypeInMonthOfYear,
+  };
+
   const result = {
     top_10_users_have_most_posts: [
       {
@@ -36,7 +45,7 @@ export async function DashboardRepo() {
       },
     ],
     count_user_per_status: {
-      num_of_unverified: 20,
+      num_of_unverified: response.data.numberOfUsersPerStatus.status,
       num_of_verified: 20,
       num_of_banned: 10,
     },
@@ -196,7 +205,7 @@ export async function DashboardRepo() {
     ],
   };
 
-  console.log("result: ", result);
+  // console.log("result: ", result);
   // console.log('dashboard: ', dashboard);
   // if (!dashboard) {
   //   throw new Response('', {
@@ -205,5 +214,5 @@ export async function DashboardRepo() {
   //   });
   // }
 
-  return result;
+  return response.data;
 }
